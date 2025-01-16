@@ -9,20 +9,22 @@
     --grey-color: #747E79;
     --dark-color: #000000;
 
+
     --primary-font: 'Cabin', sans-serif;
     --seconday-font: 'Calistoga', sans-serif;
-    
+   
     --border-width: 3px;
     --element-border-radius: 5px;
-    
+   
     --button-height: 5px;
-    
+   
     --small-button-height: 2px;
-    
+   
     --element-padding: 0.8em;
-    
+   
     --maximum-width: 320px;
 }
+
 
 html, body {
     margin: 0;
@@ -30,26 +32,33 @@ html, body {
     font-size: 16px;
 }
 
+
+
 body {
     color: var(--dark-color);
     background-color: var(--secondary-light-color);
     font-family: var(--primary-font);
 
-    background-image: linear-gradient(to top, rgb(188, 150, 230) , rgb(85, 40, 111));
+
+    background-image: linear-gradient(to top, rgb(150, 191, 230) , rgb(73, 212, 154));
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
 
+
 /* === Typography === */
+
 
 h1, h2 {
     margin: 0;
 }
 
+
 h2 {
     font-weight: 500;
 }
+
 
 .app-title {
     font-family: var(--seconday-font);
@@ -57,11 +66,14 @@ h2 {
     text-align: center;
 }
 
+
 /* === Sections === */
+
 
 section {
     margin: 3em 0;
 }
+
 
 .auth-fields-and-buttons {
     display: flex;
@@ -69,7 +81,9 @@ section {
     gap: 1em;
 }
 
+
 * /*=== User Section === */
+
 
 .user-section {
     display: flex;
@@ -77,6 +91,14 @@ section {
     align-items: center;
     gap: 0.8em;
 }
+
+
+#user-greeting{
+    padding-bottom: 30px;
+
+
+}
+
 
 .user-section img {
     width: 3.75em;
@@ -85,12 +107,26 @@ section {
     border: var(--border-width) solid var(--dark-color);
 }
 
+
 .user-section h2 {
     font-size: 1.2em;
 }
 
 
+
+
+
+
+* /*=== dropdown menu === */
+select{
+    font-family:'Times New Roman', Times, serif;
+}
+
+
+
+
 /* === Nav === */
+
 
 nav {
     margin: 0.6em 0;
@@ -99,12 +135,14 @@ nav {
     justify-content: flex-end;
 }
 
+
 .user-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.8em;
 }
+
 
 .user-section img {
     width: 3.75em;
@@ -114,13 +152,18 @@ nav {
     align-self: center;
 }
 
+
 .user-section h2 {
     font-size: 1.2em;
 }
 /* === Structure === */
 
+
 .container {
-    background-image: linear-gradient(to right, rgb(155, 226, 73) , rgb(139, 62, 228));
+    background-image: url("assets/images/background3.jpg");
+    padding: 36px;
+    /* border-radius: 5%; */
+    border-style: solid;
     max-width: var(--maximum-width);
     margin: 0 auto;
     display: flex;
@@ -128,19 +171,23 @@ nav {
     width: 100%;
 }
 
+
 #logged-out-view .container {
     gap: 2em;
 }
 
+
 #logged-out-view{
-    background-image: linear-gradient(to top, rgb(216, 180, 226) , rgb(174, 117, 159));
+    /* background-image: linear-gradient(to top, rgb(216, 180, 226) , rgb(174, 117, 159)); */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     padding: 30px;
 }
 
+
 /* === Common for elements === */
+
 
 input, button, textarea {
     font-family: inherit;
@@ -162,6 +209,7 @@ input:focus, button:focus, textarea:focus {
  }
  
 
+
 /* this is for the user profile */
 .app-container {
     display: flex;
@@ -169,7 +217,10 @@ input:focus, button:focus, textarea:focus {
     gap: 3em;
 }
 
+
 /* === Input fields === */
+
+
 
 
 textarea {
@@ -198,15 +249,18 @@ textarea {
  
 /* === Buttons === */
 
+
 button {
     font-weight: 600;
     width: 100%;
     border:none;
 }
 
+
 button:hover {
     cursor: pointer;
 }
+
 
 .primary-btn {
     background-color: var(--primary-color);
@@ -214,20 +268,24 @@ button:hover {
     position: relative;
 }
 
+
 .primary-btn:hover {
     top: var(--button-height);
     box-shadow: none;
 }
+
 
 .secondary-btn {
     padding: 0.4em;
     background-color: transparent;
 }
 
+
 .secondary-btn:hover {
     color: var(--light-color);
     background-color: var(--dark-color);
 }
+
 
 .provider-btn {
     color: var(--dark-color);
@@ -240,18 +298,22 @@ button:hover {
     box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, .25);
 }
 
+
 .provider-btn:hover {
     transition: all 0.2s ease;
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, .25);
 }
 
+
 .google-btn-logo {
     width: 1.375em;
 }
 
-/* 
-classes to make the sign out buttons work 
+
+/*
+classes to make the sign out buttons work
 */
+
 
 .icon-img-btn {
     background: none;
@@ -262,20 +324,31 @@ classes to make the sign out buttons work
     width: 1.875em;
 }
 
+
+#sign-out-btn{
+    background-color: transparent;
+}
+
+
 .icon-img-btn:hover {
     filter: invert(0.5);
 }
 /* === IDs === */
 
+
 #logged-out-view {
     display: none;
 }
+
 
 #logged-in-view {
     display: none;
 }
 
+
 /* === Post Section === */
+
+
 
 
 .post-section {
@@ -286,4 +359,3 @@ classes to make the sign out buttons work
  }
  
 /*  credit:coursera */
-

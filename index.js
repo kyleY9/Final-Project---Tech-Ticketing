@@ -3,6 +3,10 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebas
 import { getAuth } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+import { GoogleAuthProvider} from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+import { signInWithPopup } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+//delete if this doesn't work!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!rgruhgregfbgfgougoih
+
 
 /* === Firebase Setup === */
 const firebaseConfig = {
@@ -17,6 +21,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app)
+const provider = new GoogleAuthProvider();
 
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
@@ -63,6 +68,30 @@ signedInOrNot()
 
 function authSignInWithGoogle() {
     console.log("Sign in with Google")
+    
+    signInWithPopup(auth, provider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    // IdP data available using getAdditionalUserInfo(result)
+    // ...
+
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode)
+    console.log(errorMessage)
+    const email = error.customData.email;
+    console.log(email)
+
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    console.log(credential)
+
+  });
 }
 
 function authSignInWithEmail() {
