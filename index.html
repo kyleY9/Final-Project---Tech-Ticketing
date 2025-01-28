@@ -62,8 +62,10 @@
                         <option value="Copier">Copier</option>    
                         <option value="Other">Other</option>
                     </select>
+                    
                     <br><br>
                     <h2>Affected Items</h2>
+
                     <select id="affected">
                         <option value="Whole Classroom">Whole Classroom</option>    
                         <option value="Teacher Station">Teacher Station</option>
@@ -72,33 +74,37 @@
                         <option value="More than three Student Computers">More than three Student Computers</option>    
                         <option value="Other piece of Equipment (smartboard, copier, etc...)">Other piece of Equipment (smartboard, copier, etc...)</option>
                     </select> 
+
                     <br><br>
                     <h2>Please describe the issue</h2>
                     <textarea id="describe-issue" placeholder="Describe the issue ..."></textarea>
+
                     <br><br>
                     <h2>What have you tried so far?</h2>
                     <textarea id="tried" placeholder="Describe what you did ..."></textarea>
+
                     <br><br>
                     <h2>Does the fix require admin permissions?</h2>
-                    <input type="radio" name="admin" value="Yes!"><br>
-                    <input type="radio" name="admin">No<br>
-                    <input type="radio" name="admin">Not too sure ...<br>
                     <select id="admin-permissions">
                         <option value="Yes!">Yes!</option>
                         <option value="No">No</option>
                         <option value="Not too sure ...">Not too sure ...</option>
                     </select>
+
                     <br><br>
                     <h2>Room Number</h2>
                     <input id="room" name="room" required minlength="3" maxlength="4" size="10" type="text">
+
                     <br><br>
                     <h2>Teacher Name</h2>
                     <input id="teacher-name" name="teacher-name" required size="10" type="text">
+
                     <br><br>
                     <h2>Date You First Noticed Issue:</h2>
                     <input id="date" name="date" required size="10" type="date">
+
                     <br><br>
-                    <button id="post-btn" class="primary-btn">Submit Ticket</button>
+                    <button id="post-btn" class="primary-btn">Submit Ticket</button> 
                 </div>
             </div>
         </section>

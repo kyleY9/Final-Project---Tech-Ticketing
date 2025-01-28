@@ -46,8 +46,18 @@ const createAccountButtonEl = document.getElementById("create-account-btn")
 const userProfilePictureEl = document.getElementById("user-profile-picture")
 const userGreetingEl = document.getElementById("user-greeting")
 
-const textareaEl = document.getElementById("post-input")
+const textareaEl = document.getElementById("post-input") // not read
 const postButtonEl = document.getElementById("post-btn")
+
+//ticketing categories
+const mainCategoryEl = document.getElementById("main-category")
+const affectedItemsEl = document.getElementById("affected")
+const adminPermsEl = document.getElementById("admin-permissions")
+const describeIssueEl = document.getElementById("describe-issue")
+const triedEl = document.getElementById("tried")
+const roomEl = document.getElementById("room")
+const teacherNameEl = document.getElementById("teacher-name")
+const dateEl = document.getElementById("date")
 
 /* == UI - Event Listeners == */
 
@@ -56,6 +66,8 @@ signInButtonEl.addEventListener("click", authSignInWithEmail)
 createAccountButtonEl.addEventListener("click", authCreateAccountWithEmail)
 signOutButtonEl.addEventListener("click", authSignOut)
 postButtonEl.addEventListener("click", postButtonPressed)
+
+
 
 /* === Main Code === */
 
@@ -101,21 +113,6 @@ function authSignInWithEmail() {
 
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            // sendEmailVerification(auth.currentUser)
-            //     .then(() => {
-            //         console.log("Verification Email has been sent!")
-            //         const interval = setInterval(() => {
-            //             auth.currentUser.reload().then(() => {
-            //                 if (userCredential.user.emailVerified) {
-            //                     clearInterval(interval)
-            //                     console.log("Successfully Verified!")
-            //                     showLoggedInView()
-            //                     showProfilePicture(userProfilePictureEl, user)
-            //                     showUserGreeting(userGreetingEl, user)
-            //                 }
-            //             })
-            //         }, 2000)               
-            //     })
             showLoggedInView()
             showProfilePicture(userProfilePictureEl, auth.currentUser)
             showUserGreeting(userGreetingEl, auth.currentUser)
@@ -222,12 +219,34 @@ function showLoggedOutView() {
  
 
  function postButtonPressed() {
-    const postBody = textareaEl.value
-    const user = auth.currentUser
+    const mainCat = mainCategoryEl.value
+    const affected = affectedItemsEl.value
+    const adminPerms = adminPermsEl.value
+    const issue = describeIssueEl.value
+    const tried = triedEl.value
+    const room = roomEl.value
+    const teacherName = teacherNameEl.value
+    const date = date.value
    
-    if (postBody) {
-        addPostToDB(postBody, user)
-        textareaEl.value = ""
+    if (mainCat && 
+        affected && 
+        adminPerms &&
+        issue &&
+        tried &&
+        room &&
+        teacherName &&
+        date) {
+
+        //console logging
+        console.log("issue:" + issue)
+        console.log("tried:" + tried)
+
+        //deleting the text from the boxes
+        describeIssueEl.value = ""
+        triedEl.value = ""
+    }
+    else {
+        alert("ADD SOMETHING TO the boxes :D")
     }
 }    
 //credit: coursera
