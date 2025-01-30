@@ -86,19 +86,13 @@ section {
 
 
 .user-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.8em;
+    border: solid 5px black;
+    background-color: white;
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    padding: 15px;
 }
-
-
-#user-greeting{
-    padding-bottom: 30px;
-
-
-}
-
 
 .user-section img {
     width: 3.75em;
@@ -112,21 +106,12 @@ section {
     font-size: 1.2em;
 }
 
-
-
-
-
-
 * /*=== dropdown menu === */
 select{
     font-family:'Times New Roman', Times, serif;
 }
 
-
-
-
 /* === Nav === */
-
 
 nav {
     margin: 0.6em 0;
@@ -185,11 +170,40 @@ nav {
     padding: 30px;
 }
 
+#submitted-view {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px;
+
+    background-color: peachpuff;
+    border: solid 3px black;
+}
+
+#submittied-view h2, h3 {
+    font-family: inherit;
+}
+
+#submitted-view button {
+    margin: auto;
+    width: fit-content;
+    border: solid 3px black;
+    transition: background-color, 0.5s;
+}
+
+#submitted-view button:hover {
+    background-color: grey;
+}
+
 
 /* === Common for elements === */
 
 
 input, button, textarea {
+    margin-top: 10px;
     font-family: inherit;
     padding: var(--element-padding);
     border-radius: var(--element-border-radius);
@@ -314,19 +328,27 @@ button:hover {
 classes to make the sign out buttons work
 */
 
+nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 
 .icon-img-btn {
     background: none;
     border: none;
     cursor: pointer;
-    margin-left: 5px;
     padding: 0;
     width: 1.875em;
 }
 
 
-#sign-out-btn{
-    background-color: transparent;
+#sign-out-btn {
+    background-color: white;
+    border: solid 3px black;
+    width: fit-content;
 }
 
 
@@ -348,9 +370,6 @@ classes to make the sign out buttons work
 
 /* === Post Section === */
 
-
-
-
 .post-section {
     display: flex;
     flex-direction: column;
@@ -358,4 +377,20 @@ classes to make the sign out buttons work
     gap: 1em;
  }
  
+
+ /* selects */
+select {
+    margin-top: 10px;
+    font-family: inherit;
+    padding: 10px;
+    border-radius: var(--element-border-radius);
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1.1em;
+    text-align: center;
+    border: var(--border-width) solid var(--dark-color);
+    box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, .25);
+}
+
+
 /*  credit:coursera */

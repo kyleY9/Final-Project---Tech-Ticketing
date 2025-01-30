@@ -34,6 +34,7 @@ const signOutButtonEl = document.getElementById("sign-out-btn")
 
 const viewLoggedOut = document.getElementById("logged-out-view")
 const viewLoggedIn = document.getElementById("logged-in-view")
+const viewSubmitted = document.getElementById("submitted-view")
 
 const signInWithGoogleButtonEl = document.getElementById("sign-in-with-google-btn")
 
@@ -48,6 +49,8 @@ const userGreetingEl = document.getElementById("user-greeting")
 
 const textareaEl = document.getElementById("post-input") // not read
 const postButtonEl = document.getElementById("post-btn")
+
+const submitAnotherButtonEl = document.getElementById("submit-another")
 
 //ticketing categories
 const mainCategoryEl = document.getElementById("main-category")
@@ -66,6 +69,7 @@ signInButtonEl.addEventListener("click", authSignInWithEmail)
 createAccountButtonEl.addEventListener("click", authCreateAccountWithEmail)
 signOutButtonEl.addEventListener("click", authSignOut)
 postButtonEl.addEventListener("click", postButtonPressed)
+submitAnotherButtonEl.addEventListener("click", showLoggedInView)
 
 
 
@@ -152,7 +156,6 @@ function authSignOut() {
     onAuthStateChanged(auth, (user) => {
         if (user) {
             showLoggedInView()
-            showProfilePicture(userProfilePictureEl, auth.currentUser)
             showUserGreeting(userGreetingEl, auth.currentUser)
         } else {
             showLoggedOutView()
@@ -160,34 +163,32 @@ function authSignOut() {
     })
 }
 
-function showProfilePicture(imgElement, user) {
-    if (user !== null) {
-        if (user.photoURL === null) {
-            imgElement.src = "assets/images/defaultPic.jpg"
-        } else {
-            imgElement.src = user.photoURL
-        }
-    }
-}
-
 function showUserGreeting(element, user) {
     if (user != null) {
         if (user.displayName === null) {
-            element.textContent = "Hey friend, how are you?"
+            element.textContent = "Hello! Please enter your ticket information below."
         } else {
             element.textContent = "Hello " + user.displayName + "!"
         }
     }
  }
 
-async function addPostToDB(postBody, user) {
+async function addPostToDB(user, mainCat, affected, adminPerms, issue, tried, room, teacherName, date) {
     try {
         const docRef = await addDoc(collection(db, "posts"), {
-            body: postBody,
+            mainCategory: mainCat,
+            affectedItems: affected,
+            hasAdminPerms: adminPerms,
+            ticketIssue: issue,
+            triedToFix: tried,
+            roomNumber: room,
+            theTeacherName: teacherName,
+            ticketDate: date,
             uid: user.uid,
             createdAt: serverTimestamp()
         })
         console.log("Document written with ID:", docRef.id);
+        showSubmittiedView()
     } catch(e) {
         console.error("Error Adding Document:", e)
     }
@@ -197,13 +198,20 @@ async function addPostToDB(postBody, user) {
 
 function showLoggedOutView() {
     hideView(viewLoggedIn)
+    hideView(viewSubmitted)
     showView(viewLoggedOut)
  }
  
  
  function showLoggedInView() {
     hideView(viewLoggedOut)
+    hideView(viewSubmitted)
     showView(viewLoggedIn)
+ }
+
+ function showSubmittiedView() {
+    hideView(viewLoggedIn)
+    showView(viewSubmitted)
  }
  
  
@@ -219,31 +227,35 @@ function showLoggedOutView() {
  
 
  function postButtonPressed() {
+    const user = auth.currentUser
     const mainCat = mainCategoryEl.value
     const affected = affectedItemsEl.value
-    const adminPerms = adminPermsEl.value
     const issue = describeIssueEl.value
     const tried = triedEl.value
+    const adminPerms = adminPermsEl.value
     const room = roomEl.value
     const teacherName = teacherNameEl.value
-    const date = date.value
+    const date = dateEl.value
    
     if (mainCat && 
         affected && 
-        adminPerms &&
         issue &&
         tried &&
+        adminPerms &&
         room &&
         teacherName &&
         date) {
 
-        //console logging
-        console.log("issue:" + issue)
-        console.log("tried:" + tried)
-
         //deleting the text from the boxes
+        mainCategoryEl.value = "Hardware"
+        affectedItemsEl.value = "Whole Classroom"
         describeIssueEl.value = ""
         triedEl.value = ""
+        adminPermsEl.value = "Yes!"
+        roomEl.value = ""
+        teacherNameEl.value = ""
+        dateEl.value = ""
+        addPostToDB(user, mainCat, affected, issue, tried, adminPerms, room, teacherName, date)
     }
     else {
         alert("ADD SOMETHING TO the boxes :D")
